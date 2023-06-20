@@ -1,7 +1,7 @@
 import tkinter as tk
 import math
 from PIL import Image, ImageTk
-import os
+import platform
 
 class ClosestPairGUI:
     def __init__(self, master):
@@ -13,12 +13,18 @@ class ClosestPairGUI:
         
         self.canvas = tk.Canvas(self.master, width=self.canvas_width, height=self.canvas_height)
         self.canvas.pack()
+        # Obtém o nome do sistema operacional
+        self.operating_system = platform.system()
         
         # Carregar a imagem de fundo
-        image_path = os.path.join("DC_CARTEIRO_G25", "map.png")
-        image = Image.open(image_path) 
-        image = image.resize((self.canvas_width, self.canvas_height), Image.ANTIALIAS)
-        self.background_image = ImageTk.PhotoImage(image)
+        if self.operating_system == 'Linux':
+            image = Image.open("map.png")
+            image = image.resize((self.canvas_width, self.canvas_height), Image.ANTIALIAS)
+            self.background_image = ImageTk.PhotoImage(image)
+        elif self.operating_system == 'Windows':
+            image = Image.open("DC_CARTEIRO_G25\map.png")
+            image = image.resize((self.canvas_width, self.canvas_height), Image.ANTIALIAS)
+            self.background_image = ImageTk.PhotoImage(image)
         
         # Desenhar a imagem de fundo no canvas
         self.canvas.create_image(0, 0, anchor="nw", image=self.background_image)
@@ -39,11 +45,15 @@ class ClosestPairGUI:
         
         if len(self.points) == 1:  # Verificar se é o primeiro ponto
             # Carregar a imagem para o primeiro ponto
-            image_path = os.path.join("DC_CARTEIRO_G25", "carteiro.png")
-            image = Image.open(image_path)
-            image = image.resize((40, 40), Image.ANTIALIAS)
-            self.point_image = ImageTk.PhotoImage(image)
-            
+            if self.operating_system == 'Linux':
+                image = Image.open("carteiro.png")
+                image = image.resize((40, 40), Image.ANTIALIAS)
+                self.point_image = ImageTk.PhotoImage(image)
+            elif self.operating_system == 'Windows':
+                image = Image.open("DC_CARTEIRO_G25\carteiro.png")
+                image = image.resize((40, 40), Image.ANTIALIAS)
+                self.point_image = ImageTk.PhotoImage(image)
+                
             # Substituir o primeiro ponto pela imagem no canvas
             self.canvas.create_image(x-10, y-10, anchor="nw", image=self.point_image, tags="point")
         else:
