@@ -1,6 +1,7 @@
 import tkinter as tk
 import math
 from PIL import Image, ImageTk
+import os
 
 class ClosestPairGUI:
     def __init__(self, master):
@@ -14,7 +15,8 @@ class ClosestPairGUI:
         self.canvas.pack()
         
         # Carregar a imagem de fundo
-        image = Image.open(r"DC_CARTEIRO_G25\assets\map.png")
+        image_path = os.path.join("DC_CARTEIRO_G25", "map.png")
+        image = Image.open(image_path) 
         image = image.resize((self.canvas_width, self.canvas_height), Image.ANTIALIAS)
         self.background_image = ImageTk.PhotoImage(image)
         
@@ -37,7 +39,8 @@ class ClosestPairGUI:
         
         if len(self.points) == 1:  # Verificar se é o primeiro ponto
             # Carregar a imagem para o primeiro ponto
-            image = Image.open(r"DC_CARTEIRO_G25\assets\carteiro.png")
+            image_path = os.path.join("DC_CARTEIRO_G25", "carteiro.png")
+            image = Image.open(image_path)
             image = image.resize((40, 40), Image.ANTIALIAS)
             self.point_image = ImageTk.PhotoImage(image)
             
