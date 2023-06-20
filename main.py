@@ -14,7 +14,7 @@ class ClosestPairGUI:
         self.canvas.pack()
         
         # Carregar a imagem de fundo
-        image = Image.open(r"DC_CARTEIRO_G25\assets\map.png")
+        image = Image.open("assets/map.png")
         image = image.resize((self.canvas_width, self.canvas_height), Image.ANTIALIAS)
         self.background_image = ImageTk.PhotoImage(image)
         
@@ -37,7 +37,7 @@ class ClosestPairGUI:
         
         if len(self.points) == 1:  # Verificar se é o primeiro ponto
             # Carregar a imagem para o primeiro ponto
-            image = Image.open(r"DC_CARTEIRO_G25\assets\carteiro.png")
+            image = Image.open("assets/carteiro.png")
             image = image.resize((40, 40), Image.ANTIALIAS)
             self.point_image = ImageTk.PhotoImage(image)
             
