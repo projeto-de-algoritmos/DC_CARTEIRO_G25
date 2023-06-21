@@ -25,6 +25,10 @@ class ClosestPairGUI:
             image = Image.open("DC_CARTEIRO_G25\map.png")
             image = image.resize((self.canvas_width, self.canvas_height), Image.ANTIALIAS)
             self.background_image = ImageTk.PhotoImage(image)
+        else:
+            image = Image.open("map.png")
+            image = image.resize((self.canvas_width, self.canvas_height), Image.ANTIALIAS)
+            self.background_image = ImageTk.PhotoImage(image)
         
         # Desenhar a imagem de fundo no canvas
         self.canvas.create_image(0, 0, anchor="nw", image=self.background_image)
@@ -51,6 +55,10 @@ class ClosestPairGUI:
                 self.point_image = ImageTk.PhotoImage(image)
             elif self.operating_system == 'Windows':
                 image = Image.open("DC_CARTEIRO_G25\carteiro.png")
+                image = image.resize((40, 40), Image.ANTIALIAS)
+                self.point_image = ImageTk.PhotoImage(image)
+            else:
+                image = Image.open("carteiro.png")
                 image = image.resize((40, 40), Image.ANTIALIAS)
                 self.point_image = ImageTk.PhotoImage(image)
                 
